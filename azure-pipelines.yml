@@ -1,0 +1,37 @@
+# Hugo サイトを Azure App Service のストレージにデプロイします
+# 次の queue time variables を定義して実行してください
+# AzureSubscription: AzureRMサービスコネクションの名前
+# WebAppName: App Serviceアプリの名前
+
+trigger:
+  branches:
+    include:
+      - master
+
+stages:
+  - stage: Hugo
+    jobs:
+      - job: Hugo
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - bash: |
+              set -ex
+              ./dlhugo.sh
+            displayName: Download Hugo
+          - bash: |
+              set -ex
+              rm -rf public
+              ./hugo
+            displayName: Build Site
+          - task: AzureRmWebAppDeployment@4
+            inputs:
+              ConnectionType: AzureRM
+              azureSubscription: $(AzureSubscription)
+              appType: webAppLinux
+              WebAppName: $(WebAppName)
+              AppSettings: -WEBSITES_ENABLE_APP_SERVICE_STORAGE true
+              enableCustomDeployment: true
+              DeploymentType: runFromZip
+              Package: public
+            displayName: Deploy to Azure App Service
