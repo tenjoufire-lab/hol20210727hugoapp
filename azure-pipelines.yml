@@ -15,6 +15,8 @@ stages:
         pool:
           vmImage: ubuntu-latest
         steps:
+          - checkout: self
+            submodules: recursive
           - bash: |
               set -ex
               ./dlhugo.sh
