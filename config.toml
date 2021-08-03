@@ -1,4 +1,33 @@
-baseURL = "http://example.org/"
-languageCode = "en-us"
 title = "My Demo Hugo Site"
+baseURL = "http://example.org/"
+languageCode = "ja-jp"
 theme = "ananke"
+
+SectionPagesMenu = "main"
+googleAnalytics = ""
+enableRobotsTXT = true
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+[params]
+  favicon = ""
+  site_logo = ""
+  description = "The last theme you'll ever need. Maybe."
+  facebook = "https://facebook.com"
+  twitter = "https://twitter.com"
+  instagram = ""
+  youtube = ""
+  github = "https://github.com/tenjoufire-lab/hol20210727hugoapp"
+  gitlab = ""
+  linkedin = ""
+  mastodon = ""
+  slack = ""
+  stackoverflow = ""
+  rss = ""
+  # choose a background color from any on this page: http://tachyons.io/docs/themes/skins/ and preface it with "bg-"
+  background_color_class = "bg-black"
+  featured_image = "/images/gohugo-default-sample-hero-image.jpg"
+  recent_posts_number = 2
